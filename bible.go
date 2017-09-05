@@ -294,12 +294,16 @@ var (
 	logger      *log.Logger
 	colorOutput func(v ...interface{}) string
 	winsize     int
+	database    = getGOPATH() +"/src/github.com/luk4z7/bible/bible.db"
 )
 
 const (
 	drive    = "sqlite3"
-	database = "./bible.db"
 )
+
+func getGOPATH() string {
+	return os.Getenv("GOPATH")
+}
 
 // Instance receive the instance of database sqlite
 type Instance struct {
