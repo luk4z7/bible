@@ -22,6 +22,7 @@ import (
 	"unsafe"
 )
 
+// @todo include other languages config
 var (
 	// bookConvertion provide the convertion of names of books
 	bookConvertion = map[string][]string{
@@ -290,17 +291,19 @@ var (
 			"Apocalipse",
 		},
 	}
+
 	p           = fmt.Println
 	logger      *log.Logger
 	colorOutput func(v ...interface{}) string
 	winsize     int
-	database    = getGOPATH() +"/src/github.com/luk4z7/bible/bible.db"
+	database    = getGOPATH() + "/src/github.com/luk4z7/bible/bible.db"
 )
 
 const (
-	drive    = "sqlite3"
+	drive = "sqlite3"
 )
 
+// @todo check gopath exchange to not fail search database
 func getGOPATH() string {
 	return os.Getenv("GOPATH")
 }
@@ -431,6 +434,7 @@ func sortedKeys(m map[string][]string) *sortedMap {
 	return sm
 }
 
+// @todo create index for viewing all books
 // putDisplay print the index of bible
 func putDisplay() {}
 
@@ -468,6 +472,7 @@ func generateSpaces(str string, param int) string {
 }
 
 // @todo Improvement the broken line when the line is required break one more line
+// @todo include hyphen in line breaks where the word will be separated
 // breakLine breaks the rows for column generation
 func breakLine(str string) string {
 	half := int(winsize / 2)
