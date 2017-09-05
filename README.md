@@ -3,7 +3,7 @@
 ### Getting started
 
 ```bash
-go get https://github.com/luk4z7/bible
+go get github.com/luk4z7/bible
 ```
 
 **Execute**
