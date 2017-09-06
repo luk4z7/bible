@@ -24,8 +24,8 @@ import (
 
 // @todo include other languages config
 var (
-	// bookConvertion provide the convertion of names of books
-	bookConvertion = map[string][]string{
+	// bookConversion provide the conversion of names of books
+	bookConversion = map[string][]string{
 		"genesis": {
 			"01O",
 			"Gênesis",
@@ -341,7 +341,7 @@ func main() {
 		os.Exit(2)
 	}
 	nameBook := os.Args[1]
-	if len(bookConvertion[nameBook]) < 1 {
+	if len(bookConversion[nameBook]) < 1 {
 		p("There is no book with this name")
 		os.Exit(2)
 	}
@@ -385,7 +385,7 @@ func main() {
 	logger = log.New(os.Stdout, colorOutput(" Holy bible  :: "), 0)
 
 	p()
-	title := "Book: " + bookConvertion[nameBook][1] + "  Chapter: " + chapter + "  Verse: " + verseBegin + "-" + verseEnd
+	title := "Book: " + bookConversion[nameBook][1] + "  Chapter: " + chapter + "  Verse: " + verseBegin + "-" + verseEnd
 	newText := generateSpaces(" "+title, 18)
 	logger.Println(colorOutput(newText))
 	p()
@@ -394,7 +394,7 @@ func main() {
 	instance.db = getDB()
 	defer instance.db.Close()
 
-	rows, err := get(instance.db, bookConvertion[nameBook][0], chapter, verseBegin, verseEnd)
+	rows, err := get(instance.db, bookConversion[nameBook][0], chapter, verseBegin, verseEnd)
 	if err != nil {
 		panic(err)
 	}

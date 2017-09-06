@@ -1,5 +1,7 @@
 # Bible
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/luk4z7/bible)](https://goreportcard.com/report/github.com/luk4z7/bible)
+
 ### Getting started
 
 ```bash
