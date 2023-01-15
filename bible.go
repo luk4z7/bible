@@ -11,15 +11,18 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/agtorre/gocolorize"
+	"go/build"
 	"log"
 	"os"
 	"os/exec"
-	_ "rsc.io/sqlite"
+	"path"
 	"strconv"
 	"strings"
 	"syscall"
 	"unsafe"
+
+	"github.com/agtorre/gocolorize"
+	_ "rsc.io/sqlite"
 )
 
 // @todo include other languages config
@@ -296,16 +299,24 @@ var (
 	logger      *log.Logger
 	colorOutput func(v ...interface{}) string
 	winsize     int
-	database    = getGOPATH() + "/src/github.com/luk4z7/bible/bible.db"
 )
 
 const (
 	drive = "sqlite3"
 )
 
-// @todo check gopath exchange to not fail search database
-func getGOPATH() string {
-	return os.Getenv("GOPATH")
+func modulePath(name, version string) string {
+	cache, ok := os.LookupEnv("GOMODCACHE")
+	if !ok {
+		gopath := os.Getenv("GOPATH")
+		if gopath == "" {
+			gopath = build.Default.GOPATH
+		}
+
+		cache = path.Join(gopath, "pkg", "mod")
+	}
+
+	return path.Join(cache, name+"@"+version)
 }
 
 // Instance receive the instance of database sqlite
@@ -315,10 +326,11 @@ type Instance struct {
 
 // getDB return instance of database sqlite
 func getDB() *sql.DB {
-	db, err := sql.Open(drive, database)
+	db, err := sql.Open(drive, modulePath("github.com/luk4z7/bible", "v1.0.2")+"/bible.db")
 	if err != nil {
 		log.Fatalln("could not open database:", err)
 	}
+
 	return db
 }
 
