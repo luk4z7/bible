@@ -8,6 +8,11 @@
 sudo apt-get install libsqlite3-dev
 ```
 
+Change to your GOBIN if needed
+```bash
+export GOBIN=/usr/local/go/bin/
+```
+
 ### Getting started
 
 ```bash

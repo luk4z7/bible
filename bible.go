@@ -326,7 +326,7 @@ type Instance struct {
 
 // getDB return instance of database sqlite
 func getDB() *sql.DB {
-	db, err := sql.Open(drive, modulePath("github.com/luk4z7/bible", "v1.0.2")+"/bible.db")
+	db, err := sql.Open(drive, modulePath("github.com/luk4z7/bible", "v1.0.3")+"/bible.db")
 	if err != nil {
 		log.Fatalln("could not open database:", err)
 	}
